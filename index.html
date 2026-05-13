@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Red Sapien | Ingeniería de Ventas para Detailings y Talleres</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@300;400;700;900&family=Anton&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* -------------------------------
+           1. RESET Y VARIABLES GLOBALES
+        ------------------------------- */
+        :root {
+            --black: #000000;
+            --rs-red: #FF3C00;
+            --dark-gray: #0a0a0a;
+            --glow-red: rgba(255, 60, 0, 0.4);
+            --border-fire: linear-gradient(90deg, transparent, #FF3C00, transparent);
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Anton', sans-serif;
+            --font-mono: 'Orbitron', sans-serif;
+
+            /* Optimización de espacios globales */
+            --section-padding-desktop: 120px 5%;
+            --section-padding-mobile: 80px 5%;
+            --card-padding: 40px 35px;
+            --gap-lg: 40px;
+            --gap-md: 25px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body,
+        html {
+            height: 100%;
+            background-color: var(--black);
+            font-family: var(--font-main);
+            color: #ffffff;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* -------------------------------
+           2. PRELOADER (Intacto)
+        ------------------------------- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .loader-wrap {
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rs-spinner {
+            width: 120px;
+            height: 120px;
+            border: 3px solid rgba(255, 255, 255, 0.03);
+            border-top: 3px solid var(--rs-red);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -60px;
+            margin-left: -60px;
+        }
+
+        .logo-center {
+            width: 65px;
+            height: 65px;
+            z-index: 10001;
+            background-image: url('Imagenes/Logo-Red-Sapien.webp');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: drop-shadow(0 0 8px var(--glow-red));
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader-text {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rs-red);
+            animation: pulse 1.5s infinite;
+            margin-top: 150px;
+            font-weight: 900;
+        }
+
+        /* -------------------------------
+           3. ANIMACIONES GLOBALES
+        ------------------------------- */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slowScroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes floatArrows {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(8px);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes subtleDataFlow {
+            0% {
+                top: -30%;
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.8;
+            }
+
+            85% {
+                opacity: 0.8;
+            }
+
+            100% {
+                top: 110%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes rse-blink {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes pulseStatus {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes softPulse {
+            0% {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+
+            50% {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 6px rgba(37, 211, 102, 0.3);
+            }
+
+            100% {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        @keyframes windshieldGlare {
+            0% {
+                left: -150%;
+            }
+
+            15% {
+                left: 200%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
+        /* -------------------------------
+           4. NAV SLIDER (MODIFICADO SUTILMENTE CON BANDERA DE COLOMBIA)
+        ------------------------------- */
+        .marina-nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 35px;
+            background: linear-gradient(90deg, 
+                rgba(252, 209, 22, 0.12) 0%, 
+                rgba(252, 209, 22, 0.12) 50%, 
+                rgba(0, 56, 147, 0.12) 50%, 
+                rgba(0, 56, 147, 0.12) 75%, 
+                rgba(206, 17, 38, 0.12) 75%, 
+                rgba(206, 17, 38, 0.12) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .marina-track {
+            display: flex;
+            white-space: nowrap;
+            animation: slowScroll 40s linear infinite;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .marina-item {
+            padding: 0 60px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #444;
+        }
+
+        .marina-item span {
+            color: var(--rs-red);
+        }
+
+        /* -------------------------------
+           5. HERO SECTION (Espacios optimizados)
+        ------------------------------- */
+        .main-engine {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            background: radial-gradient(circle at center, #0f0f0f 0%, #000000 100%);
+            overflow: hidden;
+        }
+
+        .main-engine::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .content-box {
+            position: relative;
+            z-index: 10;
+            max-width: 850px;
+        }
+
+        .headline {
+            font-family: var(--font-title);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            /* Aumentado para respiración */
+            color: #ffffff;
+        }
+
+        .headline span {
+            color: var(--rs-red);
+        }
+
+        /* Upgrade UX: Efecto Parabrisas (Glassmorphism + Reflejo) */
+        .paragraph {
+            position: relative;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            line-height: 1.65;
+            /* Optimizado para lectura */
+            color: #dddddd;
+            max-width: 600px;
+            margin: 0 auto 45px;
+            /* Más espacio inferior */
+            font-weight: 400;
+            background: rgba(10, 10, 10, 0.55);
+            backdrop-filter: blur(12px);
+            border: 1px solid #000000;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px 32px;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .paragraph strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .paragraph::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+            transform: skewX(-25deg);
+            animation: windshieldGlare 10s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        .objection-killer {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 45px;
+            flex-wrap: wrap;
+        }
+
+        .kill-item {
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: #ff3c00;
+            background: rgba(255, 60, 0, 0.1);
+            padding: 6px 14px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+        }
+
+        .price-badge {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .price-badge strong {
+            color: #ff3c00;
+            font-size: 1.2rem;
+            font-family: var(--font-title);
+        }
+
+        .bross-mention {
+            font-family: var(--font-title);
+            font-size: clamp(1.1rem, 3.2vw, 1.5rem);
+            color: #fff;
+            font-style: italic;
+            transform: skew(-12deg);
+            border-bottom: 3px solid var(--rs-red);
+            padding: 0 8px;
+            margin: 5px 0;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px rgba(255, 60, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .cta-premium {
+            position: relative;
+            display: inline-block;
+            padding: 24px 65px;
+            /* Más grande para impacto */
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-family: var(--font-mono);
+            font-weight: 900;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-premium:hover {
+            border-color: var(--rs-red);
+            background: #000;
+            box-shadow: 0 0 20px var(--glow-red);
+        }
+
+        .cta-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.6s;
+        }
+
+        .cta-premium:hover::before {
+            left: 100%;
+        }
+
+        .burning-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--border-fire);
+            box-shadow: 0 -2px 10px var(--rs-red);
+            z-index: 50;
+        }
+
+        .nfs-arrows {
+            position: absolute;
+            bottom: 40px;
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            opacity: 0;
+            z-index: 20;
+            transition: opacity 1s ease-in;
+        }
+
+        .nfs-arrows.visible {
+            display: flex;
+            opacity: 0.6;
+            animation: floatArrows 2s infinite ease-in-out;
+        }
+
+        .arrow-v {
+            width: 15px;
+            height: 15px;
+            border-right: 2px solid var(--rs-red);
+            border-bottom: 2px solid var(--rs-red);
+            transform: rotate(45deg);
+        }
+
+        /* -------------------------------
+           6. TELEMETRÍA (Espacios premium)
+        ------------------------------- */
+        #rs-telemetry-module {
+            background-color: #030303;
+            padding: var(--section-padding-desktop);
+            position: relative;
+            overflow: hidden;
+            font-family: var(--font-main);
+        }
+
+        #rs-telemetry-module>div:first-of-type {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 60, 0, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .rs-dash-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .rs-dash-window {
+            background: #0d0d0d;
+            border: 1px solid #222;
+            border-radius: 12px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .rs-dash-top-bar {
+            background: #161616;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .rs-dash-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .rs-dash-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #333;
+        }
+
+        .rs-dash-dot.active-green {
+            background: #00ff44;
+            box-shadow: 0 0 10px #00ff44;
+        }
+
+        .rs-dash-meta-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        .rs-dash-status-pill {
+            background: rgba(0, 255, 68, 0.1);
+            color: #00ff44;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 255, 68, 0.2);
+            font-weight: bold;
+        }
+
+        .rs-dash-content-area {
+            display: flex;
+            background: #080808;
+            padding: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 50px;
+        }
+
+        .rs-dash-image-frame {
+            width: 280px;
+            background: #000;
+            border-radius: 20px;
+            padding: 8px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .rs-dash-image-frame:hover {
+            transform: scale(1.02);
+            border-color: #ff3c00;
+        }
+
+        .rs-dash-image-frame img {
+            width: 100%;
+            border-radius: 14px;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .rs-dash-side-metrics {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            color: #fff;
+        }
+
+        .rs-dash-meta-icon {
+            width: 24px;
+            opacity: 0.8;
+            vertical-align: middle;
+        }
+
+        .rs-dash-mini-stat {
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 15px;
+        }
+
+        .rs-dash-mini-stat label {
+            display: block;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .rs-dash-mini-stat span {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: #fff;
+        }
+
+        .rs-dash-terminal {
+            background: #050505;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 25px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .rs-dash-terminal::before {
+            content: "EJECUTANDO SISTEMA";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #030303;
+            padding: 0 10px;
+            font-size: 9px;
+            color: #ff3c00;
+        }
+
+        .rs-type-green {
+            color: #00ff44;
+            text-shadow: 0 0 5px rgba(0, 255, 68, 0.3);
+        }
+
+        .rs-type-orange {
+            color: #ff3c00;
+        }
+
+        .rs-dash-btn {
+            display: inline-block;
+            margin-top: 40px;
+            background: #ff3c00;
+            color: #fff;
+            text-decoration: none;
+            padding: 20px 55px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 60, 0, 0.2);
+        }
+
+        .rs-dash-btn:hover {
+            transform: translateY(-3px);
+            background: #fff;
+            color: #ff3c00;
+            box-shadow: 0 0 30px rgba(255, 60, 0, 0.5);
+        }
+
+        .rs-dash-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .rs-dash-modal.active {
+            display: flex;
+        }
+
+        .rs-dash-modal img {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        .rs-dash-close-btn {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100000;
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .rs-dash-close-btn:hover {
+            background: #ff3c00;
+            transform: scale(1.1);
+        }
+
+        /* -------------------------------
+           7. ECOSISTEMA UNIQUE
+        ------------------------------- */
+        .rse-eco-area {
+            --rse-red: #ff3c00;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 60, 0, 0.05) 0%, transparent 20%), linear-gradient(rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.94)), url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            padding: var(--section-padding-desktop);
+            position: relative;
+            overflow: hidden;
+            font-family: var(--font-main);
+            color: #fff;
+        }
+
+        .rse-tactical-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 35%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255, 60, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 60, 0, 0.03) 1px, transparent 1px);
+            background-size: 45px 45px;
+            z-index: 0;
+            pointer-events: none;
+            -webkit-mask-image: linear-gradient(90deg, black 40%, transparent 100%);
+            mask-image: linear-gradient(90deg, black 40%, transparent 100%);
+        }
+
+        .rse-tactical-map::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 60, 0, 0.04) 0%, transparent 80%);
+        }
+
+        .rse-turbo-vertical {
+            position: absolute;
+            top: 0;
+            left: 17.5%;
+            width: 1px;
+            height: 100%;
+            background: rgba(255, 60, 0, 0.08);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .rse-turbo-vertical::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -1px;
+            width: 3px;
+            height: 25%;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 60, 0, 0.4) 40%, #ffffff 50%, rgba(255, 60, 0, 0.4) 60%, transparent 100%);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(255, 60, 0, 0.3);
+            animation: subtleDataFlow 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            opacity: 0.6;
+        }
+
+        .rse-eco-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .rse-eco-header {
+            text-align: left;
+            margin-bottom: 80px;
+            transform: skewX(-3deg);
+        }
+
+        .rse-eco-header h2 {
+            font-family: var(--font-title);
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            color: #fff;
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .rse-eco-header h2 span {
+            font-family: var(--font-mono);
+            color: var(--rse-red);
+            font-size: 0.3em;
+            display: block;
+            letter-spacing: 5px;
+            margin-top: 20px;
+            transform: skewX(3deg);
+        }
+
+        .rse-eco-pc-case {
+            max-width: 950px;
+            margin: 0 auto 100px;
+            position: relative;
+        }
+
+        .rse-eco-laptop-lid {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 8px 8px 0 0;
+            padding: 20px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+        }
+
+        .rse-eco-cam-unit {
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rse-eco-dot {
+            width: 6px;
+            height: 6px;
+            background: #111;
+            border-radius: 50%;
+        }
+
+        .rse-eco-rec-led {
+            width: 4px;
+            height: 4px;
+            background: #ff0000;
+            border-radius: 50%;
+        }
+
+        .rse-eco-rec-led.active {
+            background: #00ff44;
+            box-shadow: 0 0 8px #00ff44;
+            animation: rse-blink 1s infinite alternate;
+        }
+
+        .rse-eco-screen-inner {
+            background: #000;
+            border: 1px solid #1a1a1a;
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+        }
+
+        .rse-eco-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transition: 1s;
+        }
+
+        .rse-eco-video-wrapper.is-playing video {
+            opacity: 1;
+        }
+
+        .rse-eco-play-trigger {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75px;
+            height: 75px;
+            background: var(--rse-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: 0.3s;
+        }
+
+        .rse-eco-play-trigger i {
+            color: #fff;
+            font-size: 28px;
+            margin-left: 4px;
+        }
+
+        .rse-eco-laptop-base {
+            height: 12px;
+            background: linear-gradient(90deg, #050505, #151515, #050505);
+            border-radius: 0 0 12px 12px;
+            width: 104%;
+            margin-left: -2%;
+            border-bottom: 3px solid #1a1a1a;
+        }
+
+        .rse-eco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--gap-lg);
+        }
+
+        .rse-eco-card {
+            background: rgba(15, 15, 15, 0.6);
+            padding: var(--card-padding);
+            border: 1px solid #1a1a1a;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .rse-eco-card::before {
+            content: '';
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            font-size: 100px;
+            color: rgba(255, 255, 255, 0.03);
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        .rse-card-web::before {
+            content: '\f5d1';
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+        }
+
+        .rse-card-meta::before {
+            content: '\f11e';
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+        }
+
+        .rse-card-google::before {
+            content: '\f5ee';
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+        }
+
+        .rse-eco-card:hover {
+            border-color: var(--rse-red);
+            background: rgba(20, 20, 20, 0.9);
+            transform: translateY(-5px);
+        }
+
+        .rse-eco-card:hover::before {
+            color: rgba(255, 60, 0, 0.1);
+            transform: scale(1.2) rotate(-10deg);
+        }
+
+        .rse-eco-icon-main {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rse-eco-card h3 {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .rse-eco-card p {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .rse-eco-badge {
+            background: var(--rse-red);
+            font-size: 0.65rem;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-family: var(--font-mono);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* -------------------------------
+           8. ROADMAP (Espacios y Grids)
+        ------------------------------- */
+        .rs-master-section {
+            --rs-red: #FF3C00;
+            --rs-red-glow: rgba(255, 60, 0, 0.8);
+            --rs-green: #00FF88;
+            background-color: #000000;
+            background-image: radial-gradient(circle at 100% 0%, rgba(255, 60, 0, 0.15) 0%, transparent 50%);
+            color: #ffffff;
+            padding: var(--section-padding-desktop);
+            font-family: var(--font-main);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .cities-row {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--rs-red);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .main-headline {
+            font-family: var(--font-title);
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .main-headline span {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--rs-red);
+            display: block;
+        }
+
+        .sub-headline {
+            font-size: 1rem;
+            color: #ffffff;
+            max-width: 450px;
+            margin-left: auto;
+            line-height: 1.6;
+        }
+
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gap-lg);
+            max-width: 1200px;
+            margin: 80px auto;
+        }
+
+        .phase-card {
+            background: #080808;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 40px 35px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .phase-card:hover {
+            border-color: var(--rs-red);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 60, 0, 0.1);
+        }
+
+        .phase-num {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: rgba(255, 60, 0, 0.2);
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .phase-card h4 {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .phase-desc {
+            font-size: 0.85rem;
+            color: #eeeeee;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .web-preview {
+            width: 100%;
+            height: 180px;
+            background: url('https://raw.githubusercontent.com/redsapien/appbross/9c102da830e12eb25aaae5bc5d3d47f620fc4d37/Imagenes/Preview-Brossmanizales.webp') center/cover;
+            border-radius: 12px;
+            border: 1px solid #333;
+            margin-bottom: 20px;
+        }
+
+        .campaign-img-container {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, transparent 100%), url('Imagenes/Redes-Bross.webp') center/cover;
+            border-radius: 12px;
+            border: 1px solid #1a77f2;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+            position: relative;
+        }
+
+        .active-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--rs-green);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-weight: 900;
+            animation: pulseStatus 1.5s infinite;
+        }
+
+        .payment-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #111;
+        }
+
+        .pay-hint {
+            font-size: 0.65rem;
+            color: #888;
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .pay-val {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .pay-val span {
+            font-size: 0.9rem;
+            color: var(--rs-red);
+            font-family: var(--font-mono);
+        }
+
+        .final-offer-pro {
+            max-width: 900px;
+            margin: 100px auto 0;
+            background: linear-gradient(180deg, #050505 0%, #000 100%);
+            border: 1px solid #111;
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .huge-tag {
+            font-family: var(--font-title);
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-bar {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--rs-green);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .bullets-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .bullet {
+            color: #fff;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bullet::before {
+            content: '→';
+            color: var(--rs-red);
+            font-weight: 900;
+        }
+
+        .pauta-note {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-top: 20px;
+        }
+
+        .pauta-note b {
+            color: #fff;
+        }
+
+        .btn-ready {
+            display: inline-block;
+            background: var(--rs-red);
+            color: #fff;
+            padding: 22px 60px;
+            border-radius: 100px;
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            text-decoration: none;
+            margin-top: 40px;
+            box-shadow: 0 15px 30px var(--rs-red-glow);
+            transition: 0.3s;
+        }
+
+        /* -------------------------------
+           9. FOOTER Y FORM (Espaciado)
+        ------------------------------- */
+        .rs-footer-v6 {
+            --rs-red: #ff3c00;
+            --rs-bg: #050505;
+            background: var(--rs-bg);
+            padding: 120px 6% 60px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            font-family: var(--font-main);
+        }
+
+        .rs-sticker {
+            position: absolute;
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 0;
+            filter: grayscale(1) brightness(2);
+        }
+
+        .rs-st-wrench {
+            top: 10%;
+            right: 5%;
+            width: 180px;
+            transform: rotate(-15deg);
+        }
+
+        .rs-st-tire {
+            bottom: 15%;
+            left: 3%;
+            width: 220px;
+            opacity: 0.04;
+        }
+
+        .rs-container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rs-faq-mini {
+            margin-bottom: 80px;
+        }
+
+        .rs-faq-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--rs-red);
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .rs-faq-box:hover {
+            background: rgba(255, 60, 0, 0.05);
+        }
+
+        .rs-faq-q {
+            padding: 18px 25px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .rs-faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.4s;
+            padding: 0 25px;
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .rs-faq-box.open .rs-faq-a {
+            max-height: 120px;
+            padding-bottom: 20px;
+        }
+
+        .rs-form-wrap {
+            background: #0a0a0a;
+            padding: 50px;
+            border: 1px solid #151515;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .rs-form-profile {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--rs-red);
+            margin: -95px auto 30px;
+            background: #000;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(255, 60, 0, 0.2);
+        }
+
+        .rs-form-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rs-form-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .rs-form-header h3 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .rs-grid-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .rs-form-wrap input {
+            width: 100%;
+            background: #000;
+            border: 1px solid #222;
+            padding: 16px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .rs-form-wrap input:focus {
+            border-color: var(--rs-red);
+        }
+
+        .rs-btn-send {
+            width: 100%;
+            background: var(--rs-red);
+            color: #fff;
+            border: none;
+            padding: 18px;
+            font-family: var(--font-mono);
+            font-weight: 900;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rs-btn-send span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .rs-btn-send::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .rs-btn-send:active::before {
+            left: 100%;
+        }
+
+        .rs-footer-info {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .rs-contact-data {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .rs-contact-data b {
+            color: #aaa;
+        }
+
+        .rs-social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .rs-social-icons a {
+            color: #333;
+            font-size: 1.3rem;
+            transition: 0.3s;
+        }
+
+        .rs-social-icons a:hover {
+            color: var(--rs-red);
+        }
+
+        .rs-legal-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .rs-btn-legal {
+            background: transparent;
+            border: 1px solid #1a1a1a;
+            color: #666;
+            padding: 8px 15px;
+            font-size: 0.7rem;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .rs-final-copy {
+            font-size: 0.7rem;
+            color: #222;
+            border-top: 1px solid #111;
+            padding-top: 25px;
+        }
+
+        .rs-final-copy a {
+            color: var(--rs-red);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* -------------------------------
+           10. WHATSAPP FLOATING BUTTON
+        ------------------------------- */
+        .wa-float-btn {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            width: 77px;
+            height: 77px;
+            background: #25D366;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+            animation: softPulse 3s infinite ease-in-out;
+        }
+
+        .wa-float-btn:hover {
+            background: #20b859;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .wa-icon-svg {
+            width: 42px;
+            height: 42px;
+            transition: transform 0.2s ease;
+            fill: #FFFFFF;
+        }
+
+        .wa-float-btn:hover .wa-icon-svg {
+            transform: scale(1.02);
+        }
+
+        .wa-tooltip {
+            position: absolute;
+            right: 95px;
+            background: #0a0a0a;
+            border: 1px solid #25D366;
+            color: #25D366;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 6px 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .wa-float-btn:hover .wa-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 90px;
+        }
+
+        /* -------------------------------
+           11. NOTIFICACIÓN CRISTIAN
+        ------------------------------- */
+        .rs-notification-card {
+            position: fixed;
+            bottom: 120px;
+            right: -400px;
+            width: 320px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 60, 0, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .rs-notification-card.active {
+            right: 25px;
+            pointer-events: all;
+        }
+
+        .rs-avatar-container {
+            position: relative;
+            width: 65px;
+            height: 65px;
+            flex-shrink: 0;
+        }
+
+        .rs-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-image: url('Imagenes/Avatar-SapienC.webp');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #FF3C00;
+        }
+
+        .rs-online-dot {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background: #25D366;
+            border: 2px solid #0a0a0a;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #25D366;
+        }
+
+        .rs-text-content h4 {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #FF3C00;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .rs-text-content p {
+            font-size: 0.8rem;
+            line-height: 1.3;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .rs-card-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* -------------------------------
+           12. MEDIA QUERIES (Agrupadas y Mobile-First)
+        ------------------------------- */
+        @media (max-width: 900px) {
+            .phases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bullets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .huge-tag {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding-desktop: 80px 5%;
+                --card-padding: 30px 25px;
+                --gap-lg: 30px;
+            }
+
+            .headline {
+                font-size: 2.8rem;
+                margin-bottom: 20px;
+            }
+
+            .paragraph {
+                padding: 18px 20px;
+                margin-bottom: 30px;
+            }
+
+            .cta-premium {
+                width: 90%;
+                padding: 18px;
+                text-align: center;
+            }
+
+            .nfs-arrows {
+                bottom: 20px;
+            }
+
+            .objection-killer {
+                gap: 12px;
+            }
+
+            .kill-item {
+                font-size: 0.65rem;
+            }
+
+            .rs-dash-content-area {
+                flex-direction: column;
+                padding: 25px;
+                align-items: center;
+            }
+
+            .rs-dash-image-frame {
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .rs-dash-side-metrics {
+                width: 100%;
+                gap: 20px;
+            }
+
+            .rs-dash-terminal {
+                font-size: 12px;
+                padding: 20px;
+                line-height: 1.6;
+            }
+
+            .rs-dash-btn {
+                width: 100%;
+                text-align: center;
+                padding: 16px;
+            }
+
+            .rse-eco-area {
+                padding: var(--section-padding-desktop);
+            }
+
+            .rse-eco-laptop-base {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .rse-tactical-map {
+                width: 50%;
+            }
+
+            .header-container {
+                text-align: right;
+                padding-right: 10px;
+                margin-bottom: 50px;
+            }
+
+            .rs-grid-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .wa-float-btn {
+                bottom: 25px;
+                right: 25px;
+                width: 66px;
+                height: 66px;
+            }
+
+            .wa-icon-svg {
+                width: 36px;
+                height: 36px;
+            }
+
+            .wa-tooltip {
+                display: none;
+            }
+
+            .rs-notification-card {
+                width: 280px;
+                bottom: 110px;
+                right: -320px;
+            }
+
+            .rs-notification-card.active {
+                right: 15px;
+            }
+
+            .final-offer-pro {
+                padding: 40px 20px;
+            }
+
+            .btn-ready {
+                font-size: 1.4rem;
+                padding: 18px 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wa-float-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .wa-icon-svg {
+                width: 33px;
+                height: 33px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="loader-wrap">
+            <div class="rs-spinner"></div>
+            <div class="logo-center"></div>
+            <div class="loader-text">El estándar automotriz...</div>
+        </div>
+    </div>
+
+    <nav class="marina-nav">
+        <div class="marina-track">
+    <div class="marina-item">ATENCIÓN: <span> Colombia / Pereira / Medellín / Manizales</span></div>
+    <div class="marina-item">PARA: <span>Detailing & Protección</span></div>
+    <div class="marina-item">PARA: <span>Talleres de Sincronización</span></div>
+    <div class="marina-item">PARA: <span>Personalización & Wrap</span></div>
+    <div class="marina-item">Ingeniería Red Sapien: <span>Usted atienda y gane</span></div>
+    
+    <div class="marina-item">ATENCIÓN: Colombia / Pereira / Medellín / <span>Manizales</span></div>
+    <div class="marina-item">PARA: <span>Detailing & Protección</span></div>
+    <div class="marina-item">PARA: <span>Talleres de Sincronización</span></div>
+    <div class="marina-item">PARA: <span>Personalización & Wrap</span></div>
+    <div class="marina-item">Ingeniería Red Sapien: <span>Usted atienda y gane</span></div>
+</div>
+    </nav>
+
+    <main class="main-engine">
+        <div class="content-box">
+            <h1 class="headline">Éxito Local <br><span>En Detailing</span></h1>
+            <p class="paragraph">
+                En 20 días logramos llevar <strong>+300 mensajes de dueñ@s de vehículos directo al WhatsApp</strong> de
+                <a href="https://brossmzl.redsapien.com/" target="_blank" class="bross-mention"
+                    style="text-decoration: none; cursor: pointer;">
+                    BROSS MANIZALES
+                </a>.
+            </p>
+            <div class="price-badge">
+                🔥Más clientes por <strong>396.000 Pesos/mes</strong>
+            </div>
+            <div class="objection-killer">
+                <span class="kill-item">⚡ SIN CONTRATOS</span>
+                <span class="kill-item">💰 PAGUE AL ESTAR LISTO</span>
+                <span class="kill-item">⚙️ OPERADO POR EXPERTOS</span>
+            </div>
+            <a class="cta-premium"
+                onclick="scrollToContacto(); window.open('https://wa.me/573012800024?text=Hola%20Red%20Sapien%20deseo%20saber%20mas...🏎️', '_blank');">
+                CONSULTE GRATIS →
+            </a>
+        </div>
+        <div class="nfs-arrows">
+            <div class="arrow-v"></div>
+            <div class="arrow-v"></div>
+        </div>
+        <div class="burning-line"></div>
+    </main>
+
+    <!-- NUEVA SECCIÓN: PANEL DE CONTROL EN VIVO -->
+    <section id="rs-telemetry-module">
+        <div></div>
+        <div class="rs-dash-container">
+            <div class="rs-dash-window">
+                <div class="rs-dash-top-bar">
+                    <div class="rs-dash-dots">
+                        <div class="rs-dash-dot"></div>
+                        <div class="rs-dash-dot"></div>
+                        <div class="rs-dash-dot active-green"></div>
+                    </div>
+                    <div class="rs-dash-meta-info"><span class="rs-dash-status-pill">● ACTIVA</span></div>
+                </div>
+                <div class="rs-dash-content-area">
+                    <div class="rs-dash-image-frame" onclick="rsOpenPreview()">
+                        <img src="Imagenes/Estadisticas.webp" alt="Captura Ads Manager">
+                    </div>
+                    <div class="rs-dash-side-metrics">
+                        <div><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"
+                                class="rs-dash-meta-icon" style="margin-right: 8px;"><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+                                class="rs-dash-meta-icon" style="filter: grayscale(1) invert(1);"><span
+                                style="font-size: 12px; color: #888; margin-left: 10px; font-family: 'Orbitron';">CAMPAÑA
+                                DE VENTAS</span></div>
+                        <div class="rs-dash-mini-stat"><label>Días</label><span>20</span></div>
+                        <div class="rs-dash-mini-stat"><label>Inversión Diaria</label><span
+                                style="color: #00ff44;">$13.000 Pesos</span></div>
+                        <p style="font-size: 12px; color: #555; line-height: 1.5;"><strong>Bross Manizales</strong> ha
+                            tenido su agenda llena desde su inauguración en la ciudad. <strong>¿Su negocio también está
+                                agendando así hoy?</strong></p>
+                    </div>
+                </div>
+                <div class="rs-dash-terminal" id="rs-terminal-trigger">
+                    <div id="rs-typewriter-text"></div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <a href="https://wa.me/573012800024?text=Hola%20Cristian%20deseo%20ver%20las%20estadisticas%20de%20Bross%20Ahora%20🚀"
+                    target="_blank" class="rs-dash-btn">VER MÉTRICAS EN VIVO</a>
+            </div>
+        </div>
+        <div id="rs-dash-modal" class="rs-dash-modal" onclick="rsClosePreview()">
+            <div class="rs-dash-close-btn">×</div>
+            <img src="Imagenes/Estadisticas.webp" onclick="event.stopPropagation()">
+        </div>
+    </section>
+
+    <section id="ecosistema-v5-unique" class="rse-eco-area">
+        <div class="rse-tactical-map"></div>
+        <div class="rse-turbo-vertical"></div>
+        <div class="rse-eco-container">
+            <header class="rse-eco-header">
+                <h2>INGENIERÍA<br>DE RESULTADOS <span>Estatus y Rentabilidad.</span></h2>
+            </header>
+            <div class="rse-eco-pc-case">
+                <div class="rse-eco-laptop-lid">
+                    <div class="rse-eco-cam-unit">
+                        <div class="rse-eco-dot"></div>
+                        <div id="rseLedStatus" class="rse-eco-rec-led"></div>
+                    </div>
+                    <div class="rse-eco-screen-inner">
+                        <div id="rseVideoBox" class="rse-eco-video-wrapper">
+                            <video id="rseMainVideo" playsinline preload="metadata" poster="Imagenes/Thumb-Bross.webp">
+                                <source src="Videos/Ecosistema-RedSapien.mp4" type="video/mp4">
+                            </video>
+                            <div id="rsePlayBtn" class="rse-eco-play-trigger" onclick="handleRSEVideo()"><i
+                                    class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rse-eco-laptop-base"></div>
+            </div>
+            <div class="rse-eco-grid">
+                <div class="rse-eco-card rse-card-web"
+                    onclick="window.open('https://brossmzl.redsapien.com', '_blank')">
+                    <div class="rse-eco-icon-main"><svg viewBox="0 0 24 24" fill="none" stroke="#ff3c00"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                            </path>
+                        </svg></div>
+                    <h3>DESARROLLO, ALTO IMPACTO</h3>
+                    <p>En un negocio visual, su página web es el primer contacto de confianza. Creamos la carta de
+                        presentación que merece.</p>
+                </div>
+                <div class="rse-eco-card rse-card-meta" onclick="solicitarDemoEnVivo()">
+                    <div class="rse-eco-badge">ALTO RENDIMIENTO</div>
+                    <div class="rse-eco-icon-main"><svg viewBox="0 0 24 24" fill="#1877F2" width="40">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg></div>
+                    <h3>ESTRATEGIA DIGITAL DE ALTA PRECISIÓN</h3>
+                    <p>No buscamos likes. Ejecutamos ingeniería en redes sociales para llevar dueñ@s de vehículos
+                        directamente a su WhatsApp.</p>
+                </div>
+                <div class="rse-eco-card rse-card-google"
+                    onclick="window.open('https://g.page/brossmanizales', '_blank')">
+                    <div class="rse-eco-icon-main"><svg width="40" height="40" viewBox="0 0 24 24">
+                            <path
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                fill="#333" />
+                            <path
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                fill="#444" />
+                            <path
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                                fill="#555" />
+                            <path
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 8.7 4.53z"
+                                fill="#222" />
+                        </svg></div>
+                    <div>
+                        <h3>POSICIONAMIENTO EN GOOGLE</h3>
+                        <p>Dominio local absoluto. Posicionamiento estratégico para aparecer de primero cuando los
+                            clientes busquen su servicios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="ecosistema-roadmap-rs" class="rs-master-section">
+        <style>
+            .rs-urgency-badge {
+                position: absolute;
+                top: -18px;
+                right: 40px;
+                background: linear-gradient(90deg, #FF3C00, #d93300);
+                color: #ffffff;
+                font-family: var(--font-mono, 'Orbitron', sans-serif);
+                font-size: 0.85rem;
+                font-weight: 900;
+                padding: 8px 25px;
+                border-radius: 50px;
+                border: 1px solid #ff774d;
+                box-shadow: 0 0 20px rgba(255, 60, 0, 0.5);
+                letter-spacing: 1px;
+                z-index: 10;
+                animation: rs-pulse-badge 2s infinite;
+            }
+
+            @keyframes rs-pulse-badge {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 60, 0, 0.7); }
+                50% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 60, 0, 0); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 60, 0, 0); }
+            }
+
+            @media (max-width: 768px) {
+                .rs-urgency-badge {
+                    right: 50%;
+                    transform: translateX(50%);
+                    top: -15px;
+                    width: max-content;
+                    font-size: 0.75rem;
+                    padding: 6px 20px;
+                    animation: rs-pulse-badge-mobile 2s infinite;
+                }
+                @keyframes rs-pulse-badge-mobile {
+                    0% { transform: translateX(50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 60, 0, 0.7); }
+                    50% { transform: translateX(50%) scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 60, 0, 0); }
+                    100% { transform: translateX(50%) scale(1); box-shadow: 0 0 0 0 rgba(255, 60, 0, 0); }
+                }
+            }
+        </style>
+
+        <div class="header-container">
+            <div class="cities-row">Manizales • Medellín • Pereira</div>
+            <h2 class="main-headline">ASÍ LO LOGRAMOS:<br><span>PIEZA POR PIEZA</span></h2>
+            <p class="sub-headline">Creamos y operamos una máquina que lo hace sobresalir ante su competencia y trae
+                Vehículos diarios para que su equipo nunca esté de manos cruzadas.</p>
+        </div>
+        <div class="phases-grid">
+            <a href="https://brossmzl.redsapien.com" target="_blank"
+                style="text-decoration: none; color: inherit; display: block;">
+                <div class="phase-card">
+                    <div class="phase-num">01</div>
+                    <h4>SITIO WEB DE VENTAS</h4>
+                    <p class="phase-desc">Su centro de operaciones digital diseñado para convertir visitantes en
+                        clientes.</p>
+                    <div class="web-preview"></div>
+                    <div
+                        style="text-decoration:none; color:#fff; font-family:var(--font-mono); font-size:0.65rem; border:1px solid #333; padding:12px; border-radius:5px; text-align:center; margin-bottom:20px;">
+                        VER EN VIVO →</div>
+                    <div class="payment-footer"><span class="pay-hint">Listo en 24 horas. Solo paga al verlo
+                            online</span>
+                        <div class="pay-val">$138.600 Pesos <span>(35%)</span></div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.facebook.com/share/v/18gfTDUAZx/" target="_blank"
+                style="text-decoration: none; display: block; color: inherit;">
+                <div class="phase-card">
+                    <div class="phase-num">02</div>
+                    <h4>FACEBOOK ADS Y REDES</h4>
+                    <p class="phase-desc">Segmentación precisa para captar dueñ@s de autos listos para contratar sus
+                        servicios.</p>
+                    <div class="campaign-img-container">
+                        <div>
+                            <div style="font-family:var(--font-title); font-size:1.8rem;">100% OPTIMIZADAS</div>
+                        </div>
+                    </div>
+                    <div class="payment-footer"><span class="pay-hint">Lista en 24 horas. Solo paga al recibir
+                            mensajes</span>
+                        <div class="pay-val">$138.600 Pesos <span>(35%)</span></div>
+                    </div>
+                </div>
+            </a>
+            <div class="phase-card">
+                <div class="phase-num">03</div>
+                <h4>REPUTACIÓN EN GOOGLE</h4>
+                <p class="phase-desc">Perfil optimizado con sus datos de contacto y reseñas positivas que generan
+                    confianza.</p>
+                <div
+                    style="height:150px; background: #000; border:1px solid #1a1a1a; border-radius:12px; margin-bottom:20px; display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
+                    <img src="Imagenes/Google-my.webp" alt=""
+                        style="max-height: 60px; width: auto; z-index: 1; position: absolute;">
+                    <a href="https://share.google/M4KpKi1JTQgVMCAw2" target="_blank"
+                        style="color:var(--rs-red); font-family:var(--font-mono); font-size:0.7rem; text-decoration:none; border:1px solid var(--rs-red); padding:10px 20px; border-radius:50px; background: rgba(0,0,0,0.7); z-index: 2; backdrop-filter: blur(4px);">VER
+                        PERFIL GOOGLE →</a>
+                </div>
+                <div class="payment-footer"><span class="pay-hint">Pago final, solo cuando este en el mapa</span>
+                    <div class="pay-val">$118.800 Pesos <span>(30%)</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="final-offer-pro" style="position: relative;">
+            
+            <div class="rs-urgency-badge">🔥 SOLO 4 CUPOS DISPONIBLES</div>
+
+            <div class="guarantee-bar">TODO EL ECOSISTEMA POR SOLO</div>
+            <div class="huge-tag">$396.000 <span style="font-size:1.5rem; color:var(--rs-red);">PESOS/MES</span></div>
+            <div class="bullets-grid">
+                <div class="bullet">SIN CONTRATOS</div>
+                <div class="bullet">PAGO CONTRAENTREGA</div>
+                <div class="bullet">PÚBLICO TESTEADO</div>
+                <div class="bullet">+350 NUEVOS MENSAJES/MES</div>
+            </div>
+            <div class="pauta-note"><b>NOTA:</b> Con solo <b>$13.000 PESOS diarios de presupuesto</b>, aseguramos de
+                <b>15 a 20 mensajes</b> de dueños de vehículos directo a su WhatsApp, con una tasa de cierre del
+                <b>20%</b>.</div>
+            <a href="https://wa.me/573012800024?text=Hola%20Sapien%20deseo%20contratar%20ahora%20mismo%20🏎️%20🌐"
+                class="btn-ready">CONTRATAR</a>
+        </div>
+    </section>
+
+    <section id="rs-cierre-ecosistema" class="rs-footer-v6">
+        <img src="https://cdn-icons-png.flaticon.com/512/1995/1995470.png" class="rs-sticker rs-st-wrench"
+            loading="lazy" alt="sticker">
+        <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" class="rs-sticker rs-st-tire" loading="lazy"
+            alt="sticker">
+        <div class="rs-container">
+            <div id="faqContainer" class="rs-faq-mini">
+                <div class="rs-faq-box" onclick="this.classList.toggle('open')">
+                    <div class="rs-faq-q">¿ES SEGURO PARA MI NEGOCIO? <i class="fas fa-plus"></i></div>
+                    <div class="rs-faq-a">Implementamos tecnología probada para que usted y su marca dominen el sector
+                        automotriz local.</div>
+                </div>
+                <div class="rs-faq-box" onclick="this.classList.toggle('open')">
+                    <div class="rs-faq-q">¿CÓMO ES EL PAGO? <i class="fas fa-plus"></i></div>
+                    <div class="rs-faq-a">Usted solo paga cuando el ecosistema esté vendiendo sus servicios de forma
+                        automática.</div>
+                </div>
+                <div class="rs-faq-box" onclick="this.classList.toggle('open')">
+                    <div class="rs-faq-q">¿QUÉ CIUDADES CUBREN? <i class="fas fa-plus"></i></div>
+                    <div class="rs-faq-a">Nacimos en Manizales, pero escalamos su presencia en cualquier parte del país.
+                    </div>
+                </div>
+            </div>
+            <div class="rs-form-wrap" id="contacto">
+                <div class="rs-form-profile"><img src="Imagenes/Avatar-SapienC.webp" loading="lazy" alt="Red Sapien">
+                </div>
+                <div class="rs-form-header">
+                    <h3>Agende una Llamada</h3>
+                    <p style="font-size: 0.8rem; color: #666;">Le contactaremos en menos de 24h.</p>
+                </div>
+                <div class="rs-grid-inputs">
+                    <input type="text" id="nombre" placeholder="Su Nombre *" required>
+                    <input type="tel" id="telefono" placeholder="WhatsApp / Teléfono *" required>
+                    <input type="text" id="negocio" placeholder="Nombre del Negocio *" required>
+                    <input type="text" id="ciudad" placeholder="Ciudad *" required>
+                    <input type="date" id="fecha">
+                </div>
+                <button class="rs-btn-send" onclick="enviarWhatsAppOptimizado()"><span>AGENDAR AHORA</span></button>
+            </div>
+            <div class="rs-footer-info">
+                <div class="rs-contact-data">📍 Manizales, Caldas - Barrio Chipre<br>📧
+                    <b>redsapienc@proton.me</b><br>🕒 <span id="rs-live-clock">00:00:00</span></div>
+                <div class="rs-social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a
+                        href="https://github.com/redsapien"><i class="fab fa-github"></i></a><a href="#"><i
+                            class="fab fa-google"></i></a></div>
+                <div class="rs-legal-bar"><a href="#" class="rs-btn-legal">TÉRMINOS Y CONDICIONES</a></div>
+                <div class="rs-final-copy">&copy; 2026 TODOS LOS DERECHOS PARA EL SECTOR AUTOMOTRIZ. <br> VISITE NUESTRA
+                    WEB OFICIAL: <a href="https://redsapien.com" target="_blank">REDSAPIEN.COM</a></div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/573012800024?text=Hola%20Red%20Sapien%2C%20vi%20los%20resultados%20de%20Bross%20y%20quiero%20implementar%20este%20ecosistema%20en%20mi%20negocio.🧼🛠️"
+        class="wa-float-btn" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg class="wa-icon-svg" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M12.032 1.999c-5.514 0-10 4.486-10 9.999 0 1.763.457 3.475 1.323 4.982l-1.343 4.846 4.96-1.308c1.456.792 3.119 1.211 4.828 1.211 5.514 0 10-4.486 10-10s-4.486-10-10-10zm0 18.5c-1.497 0-2.96-.4-4.239-1.155l-.295-.176-2.944.777.787-2.864-.192-.305c-1.395-2.221-1.512-4.784-.238-6.981 1.16-2.002 3.352-3.239 5.734-3.239 3.585 0 6.5 2.915 6.5 6.5s-2.915 6.5-6.5 6.5zm3.729-4.857c-.2-.098-1.164-.574-1.344-.639s-.31-.098-.441.098c-.131.196-.51.64-.625.771s-.23.149-.429.05c-.92-.46-1.94-1.139-2.653-2.035-.275-.346-.717-.896-.111-1.045.282-.069.439-.23.534-.365.045-.069.078-.13.12-.216.03-.064.02-.121-.01-.172-.03-.05-.418-1.007-.577-1.383-.153-.362-.309-.312-.425-.315l-.363-.013c-.122 0-.327.046-.498.232-.247.27-.855.835-.855 2.037 0 1.202.875 2.363.997 2.526.122.165 1.724 2.631 4.176 3.688.416.179.791.254 1.084.267.453.022 1.311.019 1.774-.099.575-.147 1.157-.605 1.32-1.189.163-.584.163-1.082.114-1.185-.047-.102-.172-.166-.372-.265z" />
+        </svg>
+        <span class="wa-tooltip">Clic para hablar</span>
+    </a>
+
+    <div id="cristian-notify" class="rs-notification-card">
+        <div class="rs-avatar-container">
+            <div class="rs-photo"></div>
+            <div class="rs-online-dot"></div>
+        </div>
+        <div class="rs-text-content">
+            <h4>CRISTIAN ESTRATEGA</h4>
+            <p>¡Un gusto! Estoy aquí para ayudarle. Hablemos por <strong>WhatsApp.</strong></p><a
+                href="https://wa.me/573012800024?text=Hola%20Cristian%2C%20quiero%20consultar%20gratis%20sobre%20el%20ecosistema."
+                class="rs-card-link" target="_blank">CONSULTAR AHORA →</a>
+        </div>
+    </div>
+
+    <script>
+        // Funciones modales y typewriter
+        function rsOpenPreview() { document.getElementById('rs-dash-modal').classList.add('active'); }
+        function rsClosePreview() { document.getElementById('rs-dash-modal').classList.remove('active'); }
+
+        const terminalContent = [
+            { text: "> ACCEDIENDO A MÉTRICAS DE CAMPAÑA...", class: "rs-type-orange" },
+            { text: "> [OK] CONEXIÓN CON META ESTABLECIDA.", class: "rs-type-white" },
+            { text: "> RESULTADOS OBTENIDOS:", class: "rs-type-white" },
+            { text: "  ■ COSTO POR MENSAJES: $735 PESOS", class: "rs-type-green" },
+            { text: "  ■ MENSAJES DIRECTOS A WHATSAPP: 308", class: "rs-type-green" },
+            { text: "  ■ TASA DE CIERRE ESTIMADA: 20%", class: "rs-type-white" },
+            { text: "  ■ TOTAL INVERTIDO: $226.296 PESOS", class: "rs-type-orange" },
+            { text: "> ESTADO: ECOSISTEMA ÓPTIMO PARA CLONACIÓN.", class: "rs-type-green" }
+        ];
+        let lineIdx = 0, charIdx = 0, isStarted = false;
+        const targetElement = document.getElementById('rs-typewriter-text');
+        function startTypewriter() {
+            if (lineIdx < terminalContent.length) {
+                if (charIdx === 0) { const lineDiv = document.createElement('div'); lineDiv.className = terminalContent[lineIdx].class; lineDiv.id = "line-" + lineIdx; targetElement.appendChild(lineDiv); }
+                const currentDiv = document.getElementById("line-" + lineIdx);
+                currentDiv.innerHTML += terminalContent[lineIdx].text.charAt(charIdx);
+                charIdx++;
+                setTimeout(startTypewriter, 20);
+                if (charIdx === terminalContent[lineIdx].text.length) { lineIdx++; charIdx = 0; setTimeout(startTypewriter, 400); }
+            }
+        }
+        const rsObserver = new IntersectionObserver((entries) => { if (entries[0].isIntersecting && !isStarted) { isStarted = true; setTimeout(startTypewriter, 500); } }, { threshold: 0.6 });
+        rsObserver.observe(document.getElementById('rs-terminal-trigger'));
+
+        function handleRSEVideo() {
+            const video = document.getElementById('rseMainVideo'); const playBtn = document.getElementById('rsePlayBtn'); const led = document.getElementById('rseLedStatus'); const wrapper = document.getElementById('rseVideoBox');
+            video.play(); wrapper.classList.add('is-playing'); playBtn.style.display = "none"; led.classList.add('active');
+        }
+
+        function scrollToContacto() { const contactoSection = document.getElementById('contacto'); if (contactoSection) contactoSection.scrollIntoView({ behavior: 'smooth' }); }
+        function solicitarDemoEnVivo() { window.location.href = '#contacto'; setTimeout(() => { alert("🎯 ¡Perfecto! En menos de 1 hora uno de nuestros ingenieros comerciales le mostrará el ecosistema funcionando EN VIVO.\n\nPrepárate para ver:\n• Web generando leads\n• Campaña de Meta ADS activa\n• Panel de resultados reales"); }, 500); }
+        function updateClock() { const clockSpan = document.getElementById('rs-live-clock'); if (clockSpan) clockSpan.innerText = new Date().toLocaleTimeString('es-CO'); }
+        setInterval(updateClock, 1000); updateClock();
+
+        function enviarWhatsAppOptimizado() {
+            const btn = document.querySelector('.rs-btn-send');
+            const nombre = document.getElementById('nombre').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const negocio = document.getElementById('negocio').value.trim();
+            const ciudad = document.getElementById('ciudad').value.trim();
+            const fecha = document.getElementById('fecha').value;
+            if (!nombre) { alert("Por favor, ingresa tu nombre completo"); document.getElementById('nombre').focus(); return; }
+            if (!telefono) { alert("Por favor, ingresa tu número de teléfono/WhatsApp"); document.getElementById('telefono').focus(); return; }
+            if (!negocio) { alert("Por favor, ingresa el nombre de tu negocio"); document.getElementById('negocio').focus(); return; }
+            if (!ciudad) { alert("Por favor, ingresa tu ciudad"); document.getElementById('ciudad').focus(); return; }
+            btn.innerHTML = "<span>🚀 PROCESANDO INGENIERÍA...</span>"; btn.style.background = "#00ff44"; btn.disabled = true;
+            setTimeout(() => {
+                const fechaTexto = fecha ? `Fecha tentativa: ${fecha}` : "Sin fecha definida";
+                const msg = `*🆕 NUEVA CITA ECOSISTEMA RED SAPIEN*%0A%0A*👤 Nombre:* ${encodeURIComponent(nombre)}%0A*📱 Teléfono:* ${encodeURIComponent(telefono)}%0A*🏢 Negocio:* ${encodeURIComponent(negocio)}%0A*📍 Ciudad:* ${encodeURIComponent(ciudad)}%0A*📅 ${fechaTexto}*%0A%0A_✅ Listos para escalar su negocio automotriz._`;
+                window.location.href = `https://wa.me/573012800024?text=${msg}`;
+                setTimeout(() => { btn.innerHTML = "<span>ENVIAR SOLICITUD</span>"; btn.style.background = ""; btn.disabled = false; }, 4000);
+            }, 600);
+        }
+
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => { preloader.style.opacity = '0'; setTimeout(() => { preloader.style.display = 'none'; }, 600); }, 800);
+            document.body.style.overflow = "auto";
+            setTimeout(() => { const arrow = document.querySelector('.nfs-arrows'); if (arrow) arrow.classList.add('visible'); }, 10000);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const notification = document.getElementById('cristian-notify');
+            setTimeout(() => { notification.classList.add('active'); setTimeout(() => { notification.classList.remove('active'); setTimeout(() => notification.style.display = 'none', 600); }, 7000); }, 21000);
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a09bc6c7f9.js" crossorigin="anonymous" async></script>
+</body>
+
+</html>
